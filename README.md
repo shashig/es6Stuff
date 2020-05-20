@@ -10,6 +10,8 @@ The following concepts are covered:
 * `every` & `some`
 * `reduce`
 * Rest and Spread operators
+* Destructuring
+* Generators
 
 ## General Points
 * Use `const` to define constants and `let` to define variables instead of the `var` keyword to define variables. 
@@ -18,6 +20,7 @@ The following concepts are covered:
   * If JSON key value pair both have same name (value is variable name), you can shorten how to write it. E.g. `{color: color}` can be written as `{color}`. Note that internal representation does not change. So if color has value blue, the preceding code will translate to `{'color': 'blue'}` 
   * If an object defines a function in a key value pair as `makeSomething: function() {}`, it can be re-written in a simpler way as `makeSomething() {}`.
 * __Default Function Arguments__: Function declaration can define default values of input variables to be used if the invocation does not provide the value. E.g. function doSomething(x = 10, y = 20) will use 10 and 20 as default values of x and y respectively if the invocation does not provide the input values.  
+* __Classes__: Class definition allows modeling of a domain object with properties and functions. Define as: `class ClassName {}`. Constructor is a special method defined as `constructor(options)` and used to set properties when a new object is created with `new` keyword. Subclasses can be created using the `extends` keyword, e.g. `class MySubclass extends ClassName`. Subclass constructor should call `super(options)` to allow the parent class to initialize itself. 
 
 ## `forEach`
 Instead of using a `for` loop, use `forEach` to iterate through an array. 
@@ -128,4 +131,75 @@ var genderCounts = employees.reduce((acc, employee) => {
 ~~~~
 
 ## Rest & Spread Operators
-The `reduce` helper 'reduces' the input array into a single output value which could be a number, object, or anything else. For example, the code below tabulates the number of male and female employees into an output JSON object of the format `{male: #, female: #}`. 
+The __Rest__ operator combines an unknown number of arguments into a single array. For example:
+~~~~
+function processInputs(a, b, c, d, e, f) {
+ return (a * b * c * d * f);
+}
+~~~~
+can be rewritten as:
+~~~~
+function processInputs(...inputs) {
+  return inputs.reduce((product, input) => {
+    return product * input;
+  }, 1);
+}
+~~~~
+The revised function can be invoked not only as `processInputs(1, 2, 3, 4, 5);` but also with fewer or more arguments, e.g. `processInputs(1, 2, 3);` or `processInputs(1, 2, 3, 4, 5, 6, 7);`. In the above function, `...` represents the Rest operator and `...inputs` converts the unknown number of invocation arguments into a single array `inputs`. 
+
+The __Spread__ operator is used to flatten an array into its's constituents. It's used as follows:
+~~~~
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+
+const newArr = [...arr1, ...arr2];
+~~~~
+This will result in newArr containing `[1, 2, 3, 4, 5, 6]`. This is similar to `arr1.concat(arr2);`. In the above function, `...` represents the Spread operator. As can be seen both Rest and Spread operator are represented by `...`.
+
+## Destructuring
+Destructuring allows referencing object properties in a concise manner. For example:
+~~~~
+var file = {name: 'test.jpg', size: 1234};
+
+function printFile(file) {
+  console.log(`File ${file.name} is of size ${file.size}`);
+}
+~~~~
+can be rewritten as:
+~~~~
+var file = {name: 'test.jpg', size: 1234};
+
+function printFile({name, size}) {
+  console.log(`File ${name} is of size ${size}`);
+}
+
+printFile(file);
+~~~~
+Destructuring works with arrays as well. Need to use square brackets `[]` for getting elements of an array and use braces `{}` to get properties of an object or an array. For example:
+~~~~
+const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+const { length } = weekdays;
+const [myFavouriteDay] = weekdays;
+~~~~
+will set length to 7 and myFavouriteDay to 'Sun'. We can use a combination of array and object destructuring also. For example: 
+~~~~
+const employees = [
+  {id:1, name:'Ram', gender: 'male'},
+  {id:2, name:'Rahim', gender: 'male'}, 
+  {id:3, name:'Girija', gender: 'female'}
+];
+
+const [, {name}] = employees; // Get's name of the second employee, i.e. name variable is set to Rahim
+
+const accountDesc = {
+  fields : ['Id', 'Name', 'Website', 'Phone'] 
+}
+
+const {fields: [idField, nameField]} = accountDesc; //idField is set to Id and nameField is set to Name
+~~~~
+## Generators
+Generators allow any object to be iterable using for - of loop. For example:
+~~~~
+To be completed
+~~~~
