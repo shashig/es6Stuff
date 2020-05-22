@@ -13,7 +13,8 @@ The following concepts are covered:
 * Destructuring
 * Generators
 
-You can try out the code examples by going to https://stephengrider.github.io/JSPlaygrounds/. The results can be shown just by writing out the variable name. E.g. `nameArr;` as in the first example.
+You can try out the code examples by going to https://stephengrider.github.io/JSPlaygrounds/. The results can be shown just by writing out the variable name. E.g. `nameArr;` as in the first example. See screenshot below.
+![JS Playground Screenshot](images/jsPalygroundScreenshot.png)
 
 ## General Points
 * Use `const` to define constants and `let` to define variables instead of the `var` keyword to define variables. 
