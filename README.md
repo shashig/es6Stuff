@@ -90,6 +90,9 @@ var rahim = employees.find((employee) => {
 rahim;
 ~~~~
 
+## `findIndex`
+Instead of finding an item, if you need to find the index of the item, use findIndex. For example, using findIndex instead of find on the above list will return the index of 1.
+
 ## `every` & `some`
 The `every` helper checks if all the items in an array satisfy some condition and outputs a single boolean value. It performs a logical and (`&`) to a conditional applied to each input array item to output the boolean result. For example, the code below checks if all the employees are male and returns `False`.
 ~~~~
