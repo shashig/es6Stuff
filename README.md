@@ -6,7 +6,7 @@ The following concepts are covered:
 * `forEach`
 * `map`
 * `filter` + fat arrow `=>` function declaration. 
-* `find`
+* `find` & `findIndex`
 * `every` & `some`
 * `reduce`
 * Rest and Spread operators
